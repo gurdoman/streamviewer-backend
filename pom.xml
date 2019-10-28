@@ -25,6 +25,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
 
@@ -39,6 +43,35 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- JPA Support from Maven -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		
+		<!-- JDBC Connector -->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>8.0.15</version>
+		</dependency>
+		
+		<!-- Authorization check for google -->
+		<dependency>
+		     <groupId>com.google.api-client</groupId>
+		     <artifactId>google-api-client</artifactId>
+		     <version>1.30.2</version>
+	   	</dependency>
+	   	
+	   	<!-- JWT -->
+		<dependency>
+		     <groupId>com.auth0</groupId>
+		     <artifactId>java-jwt</artifactId>
+		     <version>3.3.0</version>
+	   	</dependency>
+		
+		
 	</dependencies>
 
 	<build>
