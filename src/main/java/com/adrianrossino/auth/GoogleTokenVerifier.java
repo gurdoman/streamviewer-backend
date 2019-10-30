@@ -18,13 +18,13 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 
 @Component
 public class GoogleTokenVerifier {
-	private static final HttpTransport transport = new NetHttpTransport();
-	private static final JsonFactory jsonFactory = new JacksonFactory();
+	private static final HttpTransport TRANSPORT = new NetHttpTransport();
+	private static final JsonFactory JSON_FACTORY = new JacksonFactory();
   	private static final String CLIENT_ID = "1029989204063-83br7bejtl1a6kjom4l7ap1er2nq6raj.apps.googleusercontent.com";
-  	private static final String[] issuers = {"https://accounts.google.com", "accounts.google.com"};
+  	private static final String[] ISSUERS = {"https://accounts.google.com", "accounts.google.com"};
   	
   	private static Payload verifyToken(String idToken) throws GeneralSecurityException, IOException, InvalidTokenException{
-  		final GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory).setIssuers(Arrays.asList(issuers)).
+  		final GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(TRANSPORT, JSON_FACTORY).setIssuers(Arrays.asList(ISSUERS)).
   				setAudience(Collections.singletonList(CLIENT_ID)).build();
   		System.out.println("Got token id: "+idToken);
   		System.out.println("Validating...");
