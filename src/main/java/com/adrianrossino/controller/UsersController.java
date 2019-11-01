@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +16,7 @@ import com.adrianrossino.model.Users;
 import com.adrianrossino.repository.UsersRepository;
 import com.adrianrossino.service.UserRegisterService;
 import com.adrianrossino.service.UserValidationService;
-import com.adrianrossino.service.YouTubeApiService;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
-import com.google.api.services.youtube.YouTube;
-import com.google.api.services.youtube.model.LiveBroadcastListResponse;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -39,7 +35,7 @@ public class UsersController {
 	@Value("${client.secret}")
 	private String clientSecret;
 	
-	
+	/*Use this method to force calls to youtube api for testing
 	@GetMapping
 	public LiveBroadcastListResponse getYoutube(){
 		try {
@@ -51,7 +47,7 @@ public class UsersController {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
 	
 	@PostMapping
 	public Users setUsers(@RequestBody TokenInfo token){
