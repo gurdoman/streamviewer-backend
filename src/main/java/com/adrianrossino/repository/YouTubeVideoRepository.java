@@ -8,6 +8,6 @@ import com.adrianrossino.model.YouTubeVideo;
 
 public interface YouTubeVideoRepository  extends CrudRepository<YouTubeVideo, String>{
 
-	List<YouTubeVideo> findTop5ByOrderByPublishedAtDesc();
+	List<YouTubeVideo> findTop10ByOrderByPublishedAtDesc();
 	
 }

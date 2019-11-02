@@ -22,7 +22,7 @@ public class VideosController {
 	@GetMapping
 	public List<YouTubeVideo> getYoutube(){
 		try {
-			List<YouTubeVideo> videos = ytRepo.findTop5ByOrderByPublishedAtDesc();
+			List<YouTubeVideo> videos = ytRepo.findTop10ByOrderByPublishedAtDesc();
 			if(videos != null) {
 				return videos;
 			}
