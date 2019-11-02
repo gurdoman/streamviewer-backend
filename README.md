@@ -1,7 +1,7 @@
 # StreamViewer Server
 StreamViewer back-end server
 
-###Functionality
+### Functionality
 *The server will receive the login details from a user and validate the token with google, generate a new token (one that is valid for our website), save it and return it.
 *If the user has logged-in in the past, the user will send their current token and be validated with out site, if the token has expired but it's a real token a new token will be issued to the user.
 *The server will run the YouTube v3 api every 5 minutes to see changes in the user data, fetch new live streams (if available) and save chat messages from the live video.
