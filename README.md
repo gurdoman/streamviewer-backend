@@ -56,21 +56,111 @@ List<YouTubeVideo> getYoutube()
 This method is called via GET requests, returns a list of the top nine YouTube videos that we have saved in our DB
 ## com.adrianrossino.model
 ### ChatMessage
+Model for chat messages:
+
+```
+private String id;
+private String liveChatId;
+private String publishedAt;
+private String messageText;
+private String displayName;
+private Boolean isChatOwner;
+private String profileImageUrl;
+private String channelId;
+```
 ### LiveChat
+Model for Live Chats (includes a list of messages and the current status)
+
+```
+private LiveChatStatus status;
+private List<ChatMessage> messages;
+```
+### LiveChatStatus
+Includes the id and the token for the next page of chat messages
+
+```
+private String chatId;
+private String nextPageToken;
+```
+
 ### TokenInfo
+Model for the page token, source is the sender (google or us) and token
+
+```
+private String tokenId;
+private String source;
+```
+
 ### Users
+Model for site users, includes basic info
+
+```
+private String userId;
+private String name;
+private String token;
+private String email;
+private String picture;
+private String familyName;
+```
+
 ### YouTubeVideo
+Model for YouTube videos
+
+```
+private String id;
+private String channelId;
+private String title;
+private String description;
+private String publishedAt;
+private String thumbnailUrl;
+private String liveChatId;
+private String status;
+private String embedHtml;
+```
+
 ## com.adrianrossino.repository
 ### ChatMessageRepository
+Interface for CrudRepository, returns **ChatMessage**
 ### LiveChatStatusRepository
+Interface for CrudRepository, returns **LiveChatStatus**
 ### UsersRepository
+Interface for CrudRepository, returns **Users**
 ### YouTubeVideoRepository
+Interface for CrudRepository, returns **YouTubeVideo**
 ## com.adrianrossino.service
 ### UserRegisterService
+Interface for the registration service
 ### UserRegisterServiceImpl
+Implementation of the **UserRegisterService**
+Implements method ```Users saveUser(Payload payload)``` that returns a Users object and receives a Google Payload object to extract information and save it in the DB
 ### UserValidationService
+Interface for the validation service
 ### UserValidationServiceImpl
+Implementation of the **UserValidationService**
+Implements method ```Users validateUser(TokenInfo tokenInfo)``` that returns a Users object and receives an TokenInfo object to get the token and validate that we have the user registered and return the user info
 ### YouTubeApiService
+Implementation of the YouTube Api v3 service from Google
+
+```
+public static Credential authorize(final NetHttpTransport httpTransport, String clientSecret)
+```
+Authorizes the client for api use, and returns a Credential, the refresh token is stored in a Datastore called "youtube, so the service only has to be approved once.
+
+```
+YouTube getService(String clientSecret)
+```
+Receives a clientSecret (that is provided by Google api console) and authorizes the use of the api, returns a YouTube object that has the service information and credentials.
+
+```
+List<YouTubeVideo> getStatus(YouTube youtubeService)
+```
+Calls the service and receives the last nine videos and information of them, and saves it in a list of YouTubeVideo objects from our model
+
+```
+LiveChat getMessages(String liveChatId, String pageToken, YouTube youtubeService)
+```
+Calls the service to retrieve the latest messages that we haven't saved in the DB. Returns a LiveChat object that has a list of all messages and the status of the chat, including the next page token.
+
 # application.properties 
 There is no included application.properties file, to be able to run the app you need to include the following variables to the file:
 * server.port=Server port in which you'll run this app
